@@ -10,7 +10,6 @@ class Book {
 class UI {
   static displayBooks() {
     const books = Store.getBooks();
-  
 
     books.forEach(book => UI.addBookToList(book));
   }
@@ -66,17 +65,17 @@ class Store {
   static addBook(book) {
     const books = Store.getBooks();
     books.push(book);
-    localStorage.setItem('books', JSON.stringify(books));
+    localStorage.setItem("books", JSON.stringify(books));
   }
   static removeBook(isbn) {
     const books = Store.getBooks();
 
     books.forEach((book, index) => {
-      if(book.isbn === isbn){
+      if (book.isbn === isbn) {
         books.splice(index, 1);
       }
     });
-    localStorage.setItem('books', JSON.stringify(books));
+    localStorage.setItem("books", JSON.stringify(books));
   }
 }
 
@@ -87,7 +86,7 @@ document.addEventListener("DOMContentLoaded", UI.displayBooks);
 document.querySelector("#book-form").addEventListener("submit", e => {
   // prevent actual submit
   e.preventDefault();
-// get form values
+  // get form values
   const title = document.querySelector("#title").value;
   const author = document.querySelector("#author").value;
   const isbn = document.querySelector("#isbn").value;
@@ -104,7 +103,7 @@ document.querySelector("#book-form").addEventListener("submit", e => {
     UI.addBookToList(book);
 
     // add book to store
-    Store.addBook(book);  // when u add a book, list occurs and when the page is refreshed, the list is not deleted.
+    Store.addBook(book); // when u add a book, list occurs and when the page is refreshed, the list is not deleted.
 
     //show success message
     UI.showAlert("Book Added", "success"); // when add a book, it gives green message
@@ -117,7 +116,6 @@ document.querySelector("#book-form").addEventListener("submit", e => {
 });
 //6.event: remove a book
 document.querySelector("#book-list").addEventListener("click", e => {
-  
   // remove book from UI
   UI.deleteBook(e.target);
 
